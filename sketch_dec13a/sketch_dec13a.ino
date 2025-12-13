@@ -7,8 +7,8 @@
 #include <Arduino_JSON.h> // Arduino_JSON library එක install කරන්න
 
 // WiFi විස්තර මෙතැනට දාන්න
-const char* ssid = "LTE";
-const char* password = "123456789";
+const char* ssid = "";
+const char* password = "";
 
 // MPU6050 Setup
 Adafruit_MPU6050 mpu;
