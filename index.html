@@ -23,10 +23,10 @@
         const gateway = `ws:///ws`;  // ESP32 IP 
         let websocket;
 
-        // 3D Model එක variable එකක් ලෙස
+        // 3D Model 
         let myModel;
 
-        // ගෝලීය විචල්‍යයන් (Global Variables)
+        // (Global Variables)
         let targetRotationX = 0;
         let targetRotationY = 0;
         let targetRotationZ = 0;
@@ -37,12 +37,12 @@
             websocket.onopen = () => console.log('Connected');
             websocket.onclose = () => setTimeout(initWebSocket, 2000);
             
-            // 1. onMessage function එක මේ විදියට වෙනස් කරන්න
-            // අපි මෙතනදී කෙලින්ම model එක කරකවන්නේ නෑ, target එක set කරනවා විතරයි.
+            
+            
             websocket.onmessage = (event) => {
                 const data = JSON.parse(event.data);
                 
-                // MPU6050 දත්ත variables වලට දාගන්නවා
+    
                 targetRotationX = parseFloat(data.y) * 0.5; 
                 targetRotationY = parseFloat(data.x) * 0.5;
                 targetRotationZ = parseFloat(data.z) * 0.5;
@@ -52,17 +52,17 @@
         // 2. Three.js Scene Setup
         // ==========================================
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xdddddd); // පසුබිම් වර්ණය (අළු පාට)
+        scene.background = new THREE.Color(0xdddddd); 
 
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 5; // කැමරාව ටිකක් පස්සට ගන්නවා
+        camera.position.z = 5; 
 
         const renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
-        // එළිය (Lighting) - Model එක පෙනෙන්න නම් එළිය ඕන
-        const ambientLight = new THREE.AmbientLight(0x404040, 2); // සියුම් එළියක්
+        
+        const ambientLight = new THREE.AmbientLight(0x404040, 2); 
         scene.add(ambientLight);
 
         const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
@@ -73,12 +73,12 @@
         // ==========================================
         const loader = new GLTFLoader();
 
-        // 'my_model.gltf' වෙනුවට ඔයාගේ file එකේ නම දාන්න
+        // 'my_model.gltf'
         loader.load( 'scene.gltf', function ( gltf ) {
 
             myModel = gltf.scene;
             
-            // Model එකේ size එක වෙනස් කරන්න ඕන නම් මේක වෙනස් කරන්න
+            
             myModel.scale.set(1, 1, 1); 
 
             scene.add( myModel );
@@ -106,7 +106,7 @@
         initWebSocket();
         animate();
 
-        // Window resize වුනාම හදාගන්න
+        // Window resize
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
