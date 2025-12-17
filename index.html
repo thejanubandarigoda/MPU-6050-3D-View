@@ -19,7 +19,7 @@
         import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
         // 1. WebSocket Setup
-        // ==========================================
+        
         const gateway = `ws:///ws`;  // ESP32 IP 
         let websocket;
 
@@ -50,7 +50,7 @@
         }
 
         // 2. Three.js Scene Setup
-        // ==========================================
+       
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0xdddddd); 
 
@@ -70,7 +70,7 @@
         scene.add(directionalLight);
 
         // 3. Load Custom 3D Model (.glb or .gltf)
-        // ==========================================
+      
         const loader = new GLTFLoader();
 
         // 'my_model.gltf'
